@@ -23,7 +23,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @php $count = 1 @endphp
+                            {{--get right numeration of elements--}}
+                            @php $count = $paginator->currentPage() * $paginator->perPage() - $paginator->perPage() + 1 @endphp
                             @foreach ($paginator as $url)
                                 <tr>
                                     <th scope="row" class="scope">{{ $count ++ }}</th>
@@ -46,29 +47,31 @@
                                 <ul class="pagination">
 
                                     @php
+                                        $currentPageURL = url()->current();
                                         $pagesCount = $paginator->total() / $paginator->perPage();
 
-                                        if (strpos($pagesCount, '.')) {
-                                            $pagesCount = (int) $pagesCount + 1;
+                                        if (is_float($pagesCount)) {
+                                            $pagesCount = (int) ($pagesCount + 1);
                                         }
 
-                                        $paginationLinksCount = $paginationLinksCount > $pagesCount ? $pagesCount : $paginationLinksCount;
+                                        // if given pagination links count more than the count of possible pages
+                                        $paginationLinksLimit = $paginationLinksLimit > $pagesCount ? $pagesCount : $paginationLinksLimit;
 
                                         $currentPage = $paginator->currentPage();
-                                        $linksCountToBothSide =  (int) ($paginationLinksCount / 2 );
+                                        $bothSidesLinksCount =  (int) ($paginationLinksLimit / 2 );
 
-                                        if ($currentPage > 1 && $currentPage > $linksCountToBothSide) {
-                                            $i = $currentPage - $linksCountToBothSide;
-                                            $limit = $currentPage + $linksCountToBothSide;
+                                        if ($currentPage > 1 && $currentPage > $bothSidesLinksCount) {
+                                            $i = $currentPage - $bothSidesLinksCount;
+                                            $limit = $currentPage + $bothSidesLinksCount;
 
                                             if ($limit > $pagesCount) {
                                                 $limit = $pagesCount;
-                                                $i = ($limit - $paginationLinksCount) + 1;
+                                                $i = ($limit - $paginationLinksLimit) + 1;
                                             }
 
                                         } else {
                                             $i = 1;
-                                            $limit = $paginationLinksCount;
+                                            $limit = $paginationLinksLimit;
                                         }
 
                                     @endphp
@@ -77,10 +80,10 @@
 
                                     @for ($i; $i <= $limit; $i ++)
                                         @if ($i === $currentPage)
-                                            <li class="page-item active"><a class="page-link" href="{{ '/dashboard?page=' . $i }}">{{ $i }}</a></li>
+                                            <li class="page-item active"><a class="page-link" href="{{ $currentPageURL . '?page=' . $i }}">{{ $i }}</a></li>
 
                                         @else
-                                            <li class="page-item"><a class="page-link" href="{{ '/dashboard?page=' . $i }}">{{ $i }}</a></li>
+                                            <li class="page-item"><a class="page-link" href="{{ $currentPageURL . '?page=' . $i }}">{{ $i }}</a></li>
 
                                         @endif
                                     @endfor
@@ -95,3 +98,4 @@
         </div>
     </section>
 @endsection
+

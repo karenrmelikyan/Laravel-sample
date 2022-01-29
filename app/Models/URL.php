@@ -9,6 +9,7 @@ class URL extends Model
 {
     use HasFactory;
 
+    private string $path;
     protected $table = 'urls';
     protected $fillable = [
         'path',

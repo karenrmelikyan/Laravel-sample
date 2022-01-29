@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddURLRequest;
-use App\Models\URL;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
+use App\Models\URL;
 use function view;
 
 class DashboardController extends Controller
@@ -14,13 +14,13 @@ class DashboardController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Renderable
      */
     public function index(): Renderable
     {
         return view('dashboard', [
                 'paginator' => URL::paginate(3),
-                'paginationLinksCount' => 7,
+                'paginationLinksLimit' => 7,
             ]
         );
     }
@@ -28,8 +28,8 @@ class DashboardController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param AddURLRequest $request
+     * @return RedirectResponse
      */
     public function store(AddURLRequest $request): RedirectResponse
     {
@@ -48,8 +48,8 @@ class DashboardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Routing\Redirector|RedirectResponse
+     * @param int $id
+     * @return RedirectResponse
      */
     public function destroy($id): RedirectResponse
     {
