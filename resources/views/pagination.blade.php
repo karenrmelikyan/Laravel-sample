@@ -1,54 +1,49 @@
+
 @if ($paginator->hasPages())
-<nav>
-    <ul class="pagination justify-content-end mb-0">
-        {{-- Previous Page Link --}}
-        @if ($paginator->onFirstPage())
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true" aria-label="@lang('pagination.previous')">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        @else
-        <li class="page-item">
-            <a class="page-link" href="{{ $paginator->previousPageUrl() }}" aria-label="@lang('pagination.previous')">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        @endif
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
 
-        {{-- Pagination Elements --}}
-        @foreach ($elements as $element)
-        {{-- "Three Dots" Separator --}}
-            @if (is_string($element))
-              <li class="page-item disabled" aria-disabled="true"><span class="page-link">{{ $element }}</span></li>
-            @endif
+            @php
+                $currentPageURL = url()->current();
+                $pagesCount = $paginator->total() / $paginator->perPage();
 
-            {{-- Array Of Links --}}
-            @if (is_array($element))
-                @foreach ($element as $page => $url)
-                    @if ($page === $paginator->currentPage())
-                          <li class="page-item active" aria-current="page"><span class="page-link">{{ $page }}</span></li>
-                    @else
-                         <li class="page-item"><a class="page-link" href="{{ $url }}">{{ $page }}</a></li>
-                    @endif
-                @endforeach
-            @endif
-        @endforeach
+                if (is_float($pagesCount)) {
+                    $pagesCount = (int) ($pagesCount + 1);
+                }
 
-        {{-- Next Page Link --}}
-        @if ($paginator->hasMorePages())
-        <li class="page-item">
-            <a class="page-link" href="{{ $paginator->nextPageUrl() }}" aria-label="@lang('pagination.next')">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
-        @else
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true" aria-label="@lang('pagination.next')">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
-        @endif
-    </ul>
-</nav>
+                // if given pagination links count more than the count of possible pages
+                $paginationLinksLimit = $paginationLinksLimit > $pagesCount ? $pagesCount : $paginationLinksLimit;
+
+                $currentPageNumber = $paginator->currentPage();
+                $bothSidesLinksCount =  (int) ($paginationLinksLimit / 2 );
+
+                if ($currentPageNumber > 1 && $currentPageNumber > $bothSidesLinksCount) {
+                    $i = $currentPageNumber - $bothSidesLinksCount;
+                    $limit = $currentPageNumber + $bothSidesLinksCount;
+
+                    if ($limit > $pagesCount) {
+                        $limit = $pagesCount;
+                        $i = ($limit - $paginationLinksLimit) + 1;
+                    }
+
+                } else {
+                    $i = 1;
+                    $limit = $paginationLinksLimit;
+                }
+            @endphp
+
+            <li class="page-item"><a class="page-link" href="{{ $paginator->previousPageUrl() }}">Previous</a></li>
+
+            @for ($i; $i <= $limit; $i ++)
+                @if ($i === $currentPageNumber)
+                    <li class="page-item active"><a class="page-link" href="{{ $currentPageURL . '?page=' . $i }}">{{ $i }}</a></li>
+                @else
+                    <li class="page-item"><a class="page-link" href="{{ $currentPageURL . '?page=' . $i }}">{{ $i }}</a></li>
+                @endif
+            @endfor
+
+            <li class="page-item"><a class="page-link" href="{{ $paginator->nextPageUrl() }}">Next</a></li>
+        </ul>
+    </nav>
 @endif
+
