@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\URL;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AddURLRequest;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
-use App\Models\URL;
+use Illuminate\Contracts\Support\Renderable;
 use function view;
+
 
 class DashboardController extends Controller
 {
@@ -19,7 +22,7 @@ class DashboardController extends Controller
     public function index(): Renderable
     {
         return view('dashboard', [
-                'paginator' => URL::paginate(3),
+                'paginator' => User::find(Auth::id())->urls()->paginate(3),
                 'paginationLinksLimit' => 7,
             ]
         );
@@ -35,11 +38,12 @@ class DashboardController extends Controller
     {
         $url = new URL();
         $url->path = $request->input('add');
+        $url->user_id = Auth::id();
 
         try {
             $url->save();
         } catch(QueryException $ex) {
-            return redirect('/dashboard');
+            return redirect()->back();
         }
 
         return redirect('/dashboard');

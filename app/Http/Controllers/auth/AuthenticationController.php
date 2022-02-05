@@ -26,7 +26,7 @@ class AuthenticationController extends Controller
      * @param UserRegistrationRequest $request
      * @return RedirectResponse
      */
-    public function register(Request $request): RedirectResponse
+    public function register(UserRegistrationRequest $request): RedirectResponse
     {
         $user = new User();
         $user->name = $request->input('name');

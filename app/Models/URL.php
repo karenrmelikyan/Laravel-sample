@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class URL extends Model
 {
@@ -12,6 +13,12 @@ class URL extends Model
     private string $path;
     protected $table = 'urls';
     protected $fillable = [
+        'user_id',
         'path',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
