@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\auth\AuthenticationController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,8 +30,6 @@ Route::middleware(['auth'])->group(static function() {
 });
 
 // Root(Home page)
-Route::get('/', function () {
-    return view('welcome');
-})->name('root');
+Route::get('/',[HomeController::class, 'index'])->name('root');
 
 

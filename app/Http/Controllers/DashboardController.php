@@ -22,7 +22,7 @@ class DashboardController extends Controller
     public function index(): Renderable
     {
         return view('dashboard', [
-                'paginator' => User::find(Auth::id())->urls()->paginate(3),
+                'paginator' => URL::where('user_id', Auth::id())->paginate(3),
                 'paginationLinksLimit' => 7,
             ]
         );

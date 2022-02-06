@@ -17,9 +17,9 @@
                             <thead class="thead-primary">
                             <tr>
                                 <th>#</th>
+                                <th>User</th>
                                 <th>Path</th>
                                 <th>Creation Time</th>
-                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
