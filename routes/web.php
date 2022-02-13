@@ -2,8 +2,12 @@
 
 use App\Http\Controllers\auth\AuthenticationController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UrlsController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,13 +27,18 @@ Route::get('/login', [AuthenticationController::class, 'showLoginForm'])->name('
 Route::post('/login', [AuthenticationController::class, 'login'])->name('login');
 Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
-// User dashboard
+// Dashboards
 Route::middleware(['auth'])->group(static function() {
-   Route::resource('dashboard', DashboardController::class)
-   ->only(['index', 'store', 'destroy']);
+
+   Route::resource('/dashboard_categories', CategoryController::class)
+   ->only(['index', 'store', 'update', 'destroy']);
+
+   Route::resource('/dashboard_urls', UrlsController::class)
+   ->only(['show', 'store', 'update', 'destroy']);
+
 });
 
 // Root(Home page)
-Route::get('/',[HomeController::class, 'index'])->name('root');
+Route::get('/', [HomeController::class, 'index'])->name('root');
 
 

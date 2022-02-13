@@ -15,10 +15,11 @@ class URL extends Model
     protected $fillable = [
         'user_id',
         'path',
+        'scraped_status',
     ];
 
-    public function user(): BelongsTo
+    public function category(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Category::class, );
     }
 }

@@ -25,7 +25,7 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                        <a href="{{ url('/dashboard_categories') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
@@ -42,29 +42,7 @@
                             <h2 class="text-center mb-4" >All URLs for Monitoring</h2>
                             <br>
                             <div class="table-wrap">
-                                <table class="table">
-                                    <thead class="thead-primary">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Employee name</th>
-                                            <th>URL</th>
-                                            <th>Creation Time</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                            $count = 1;
-                                        @endphp
-                                        @foreach ($urls as $url)
-                                            <tr>
-                                                <th scope="row" class="scope">{{ $count ++ }}</th>
-                                                <td>{{ $url->user->name }}</td>
-                                                <td>{{ $url->path }}</td>
-                                                <td>{{ $url->created_at  }}</td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+
                             </div>
                         </div>
                     </div>

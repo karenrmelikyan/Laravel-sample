@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserAuthRequest;
+use App\Http\Requests\Auth\UserAuthRequest;
+use App\Http\Requests\Auth\UserRegistrationRequest;
 use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
-use App\Http\Requests\UserRegistrationRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\RedirectResponse;
 
 class AuthenticationController extends Controller
 {
@@ -36,7 +35,7 @@ class AuthenticationController extends Controller
 
         Auth::login($user);
 
-        return redirect('/dashboard');
+        return redirect('/dashboard_categories');
     }
 
     /**
@@ -49,7 +48,7 @@ class AuthenticationController extends Controller
 
     /**
      * @param UserAuthRequest $request
-     * @return \Illuminate\Contracts\Foundation\Application|RedirectResponse|\Illuminate\Routing\Redirector
+     * @return RedirectResponse
      */
     public function login(UserAuthRequest $request): RedirectResponse
     {
@@ -62,11 +61,10 @@ class AuthenticationController extends Controller
             Auth::login($user);
         }
 
-        return redirect('/dashboard');
+        return redirect('/dashboard_categories');
     }
 
     /**
-     * @param Request $request
      * @return RedirectResponse
      */
     public function logout(): RedirectResponse

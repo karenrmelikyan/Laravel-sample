@@ -75,5 +75,63 @@
             @yield('content')
         </main>
     </div>
+
+{{--    <div align="center">--}}
+{{--        <div id=area>--}}
+
+{{--            Something--}}
+
+{{--        </div>--}}
+
+
+{{--        <buttons-body>--}}
+
+{{--            <button id="good" type="button" class="add-good">Add Good</button>--}}
+
+{{--            <button id="bad" type="button" class="add-bad">Add Bad</button>--}}
+
+{{--            <button id="cancel" type="button" class="cancel">Cancel</button>--}}
+
+{{--        </buttons-body>--}}
+
+{{--    </div>--}}
+
+
+{{--<script>--}}
+
+
+{{--    (function () {--}}
+
+{{--        const body = document.querySelector('buttons-body');--}}
+
+{{--        body.addEventListener('click', function (e) {--}}
+
+{{--            if (e.target.matches('.add-good')) {--}}
+{{--                addSomethingToTemplate('Good');--}}
+{{--            }--}}
+
+{{--            else if (e.target.matches('.add-bad')) {--}}
+{{--                addSomethingToTemplate('Bad');--}}
+{{--            }--}}
+
+{{--            else {--}}
+{{--                addSomethingToTemplate('Something');--}}
+{{--            }--}}
+{{--        });--}}
+
+
+{{--        function addSomethingToTemplate (text) {--}}
+{{--            template = document.getElementById('area');--}}
+{{--            template.innerHTML = text;--}}
+{{--        }--}}
+
+
+{{--    })();--}}
+{{--</script>--}}
+
+
+
+
+
 </body>
 </html>
