@@ -41,10 +41,10 @@ class CategoriesRepository implements CategoriesRepositoryInterface
 
     public function updateCategory(StoreRequest $request, int $id): bool
     {
-        $this->model->find($id)->name = $request->input('update_category');
-
         try {
-            $this->model->save();
+            $model = $this->model->find($id);
+            $model->name = $request->input('update');
+            $model->save();
         } catch(\Exception $ex) {
             return false;
         }

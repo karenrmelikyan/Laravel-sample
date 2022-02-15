@@ -5,10 +5,10 @@
         <div class="container">
             <form action=" {{ route('dashboard_urls.store') }}" method="POST">
                 @csrf
-                <label>New URL</label>
+                <label>{{ __('New URL') }}</label>
                 <input type="hidden" name="category_id" value="{{ $category_id }}"/>
                 <input type="text" name="url_path"/>
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-primary">{{ __('Add') }}</button>
             </form>
             <div class="row">
                 <div class="col-md-12">
@@ -16,7 +16,7 @@
                         {{ $category_name }}
                     </h2>
                     <h6 class="text-center mb-4">
-                        <a href="{{ route('dashboard_categories.index') }}">{{ 'All Categories' }}</a>
+                        <a href="{{ route('dashboard_categories.index') }}">{{ __('Categories') }}</a>
                     </h6>
                     <div class="table-wrap">
                         <table class="table">
@@ -40,12 +40,12 @@
                                     <td>{{ $url->path }}</td>
                                     <td>{{ $url->created_at }}</td>
                                     <td>
-                                        <form action="{{ route('dashboard_urls.destroy', ['dashboard_url' => $url->id] }}" method="POST" >
+                                        <form action="{{ route('dashboard_urls.destroy', ['dashboard_url' => $url->id]) }}" method="POST" >
                                             @csrf
                                             @method('DELETE')
                                             <buttons-body>
-                                                <button type="button" id="edit" class="btn btn-primary">Edit</button>
-                                                <button type="submit" class="btn btn-danger btn-primary">X</button>
+                                                <button type="button" id="edit" class="btn btn-primary bi bi-pencil-fill"></button>
+                                                <button type="submit" class="btn btn-primary btn-danger bi bi-trash3-fill"></button>
                                             </buttons-body>
                                         </form>
                                     </td>

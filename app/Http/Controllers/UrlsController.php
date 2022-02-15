@@ -18,8 +18,8 @@ class UrlsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $category_id
+     * @return Renderable
      */
     public function show($category_id): Renderable
     {
@@ -39,8 +39,8 @@ class UrlsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreRequest $request
+     * @return RedirectResponse
      */
     public function store(StoreRequest $request): RedirectResponse
     {
@@ -54,7 +54,7 @@ class UrlsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function update(Request $request, $id)
     {
@@ -64,8 +64,8 @@ class UrlsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return void
+     * @param int $id
+     * @return RedirectResponse
      */
     public function destroy($id): RedirectResponse
     {

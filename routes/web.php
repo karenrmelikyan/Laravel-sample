@@ -25,7 +25,7 @@ Route::get('/register', [AuthenticationController::class, 'showRegistrationForm'
 Route::post('/register', [AuthenticationController::class, 'register'])->name('register');
 Route::get('/login', [AuthenticationController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthenticationController::class, 'login'])->name('login');
-Route::post('/logout', [AuthenticationController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
 // Dashboards
 Route::middleware(['auth'])->group(static function() {

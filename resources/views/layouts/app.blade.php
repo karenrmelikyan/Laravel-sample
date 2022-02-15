@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
 <body>
     <div id="app">
@@ -53,19 +53,14 @@
                             @endif
 
                         @else
-
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
-
-                            <form action="logout" method="POST">
-                                @csrf
-
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Logout') }}
-                                </button>
-                            </form>
-
+                            <div class="dropdown">
+                                <div class="nav-link dropdown-toggle" role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ Auth::user()->name }}
+                                </div>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="{{ route('logout') }}">{{ __('Logout') }}</a></li>
+                                </ul>
+                            </div>
                         @endguest
                     </ul>
                 </div>
@@ -76,62 +71,7 @@
         </main>
     </div>
 
-{{--    <div align="center">--}}
-{{--        <div id=area>--}}
-
-{{--            Something--}}
-
-{{--        </div>--}}
-
-
-{{--        <buttons-body>--}}
-
-{{--            <button id="good" type="button" class="add-good">Add Good</button>--}}
-
-{{--            <button id="bad" type="button" class="add-bad">Add Bad</button>--}}
-
-{{--            <button id="cancel" type="button" class="cancel">Cancel</button>--}}
-
-{{--        </buttons-body>--}}
-
-{{--    </div>--}}
-
-
-{{--<script>--}}
-
-
-{{--    (function () {--}}
-
-{{--        const body = document.querySelector('buttons-body');--}}
-
-{{--        body.addEventListener('click', function (e) {--}}
-
-{{--            if (e.target.matches('.add-good')) {--}}
-{{--                addSomethingToTemplate('Good');--}}
-{{--            }--}}
-
-{{--            else if (e.target.matches('.add-bad')) {--}}
-{{--                addSomethingToTemplate('Bad');--}}
-{{--            }--}}
-
-{{--            else {--}}
-{{--                addSomethingToTemplate('Something');--}}
-{{--            }--}}
-{{--        });--}}
-
-
-{{--        function addSomethingToTemplate (text) {--}}
-{{--            template = document.getElementById('area');--}}
-{{--            template.innerHTML = text;--}}
-{{--        }--}}
-
-
-{{--    })();--}}
-{{--</script>--}}
-
-
-
-
-
+    <script src="{{ asset('js/modals.js') }}" defer></script>
 </body>
 </html>
+

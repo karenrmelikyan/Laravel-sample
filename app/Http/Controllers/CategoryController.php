@@ -12,17 +12,14 @@ use App\Http\Requests\Category\StoreRequest;
 
 class CategoryController extends Controller
 {
-
-    private  $repository;
-
     /**
      * Create a new controller instance.
      *
      * @param CategoriesRepository $repository
      */
-    public function __construct(CategoriesRepositoryInterface $repository)
+    public function __construct(private CategoriesRepositoryInterface $repository)
     {
-        $this->repository = $repository;
+        //
     }
 
     /**
