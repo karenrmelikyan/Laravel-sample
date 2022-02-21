@@ -70,8 +70,6 @@
             @yield('content')
         </main>
     </div>
-
-    <script src="{{ asset('js/modals.js') }}" defer></script>
 </body>
 </html>
 

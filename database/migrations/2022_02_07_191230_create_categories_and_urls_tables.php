@@ -28,7 +28,7 @@ class CreateCategoriesAndUrlsTables extends Migration
             $table->id();
             $table->foreignId('category_id')->references('id')->on('categories');
             $table->string('path');
-            $table->boolean('scraped_status')->nullable();
+            $table->boolean('is_scraped')->nullable();
             $table->timestamps();
         });
     }
