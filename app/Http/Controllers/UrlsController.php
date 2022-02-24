@@ -44,7 +44,7 @@ class UrlsController extends Controller
      */
     public function store(StoreRequest $request): RedirectResponse
     {
-        $this->repository->saveUrl($request);
+        $this->repository->saveUrl($request->input('url_path'), $request->input('category_id'));
 
         return redirect()->back();
     }

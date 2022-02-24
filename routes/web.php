@@ -1,13 +1,11 @@
 <?php
 
 use App\Http\Controllers\auth\AuthenticationController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UrlsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Livewire\Counter1;
 use Illuminate\Support\Facades\Route;
-
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,5 +38,6 @@ Route::middleware(['auth'])->group(static function() {
 
 // Root(Home page)
 Route::get('/', [HomeController::class, 'index'])->name('root');
+
 
 

@@ -6,7 +6,6 @@ namespace App\Repositories\Eloquent;
 
 use App\Repositories\CategoriesRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
-use App\Http\Requests\Category\StoreRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 
@@ -25,10 +24,10 @@ class CategoriesRepository implements CategoriesRepositoryInterface
             ->paginate($countPerPage);
     }
 
-    public function saveCategory(StoreRequest $request): bool
+    public function saveCategory(string $categoryName): bool
     {
         $this->model->user_id = Auth::id();
-        $this->model->name = $request->input('category_name');
+        $this->model->name = $categoryName;
 
         try {
             $this->model->save();
@@ -39,11 +38,11 @@ class CategoriesRepository implements CategoriesRepositoryInterface
         return true;
     }
 
-    public function updateCategory(StoreRequest $request, int $id): bool
+    public function updateCategory(string $categoryName, int $id): bool
     {
         try {
             $model = $this->model->find($id);
-            $model->name = $request->input('update');
+            $model->name = $categoryName;
             $model->save();
         } catch(\Exception $ex) {
             return false;

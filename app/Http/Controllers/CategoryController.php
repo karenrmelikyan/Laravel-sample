@@ -43,7 +43,7 @@ class CategoryController extends Controller
      */
     public function store(StoreRequest $request): RedirectResponse
     {
-        $this->repository->saveCategory($request);
+        $this->repository->saveCategory($request->input('category_name'));
 
         return redirect()->back();
     }
@@ -57,7 +57,7 @@ class CategoryController extends Controller
      */
     public function update(StoreRequest $request, int $id): RedirectResponse
     {
-        $this->repository->updateCategory($request, $id);
+        $this->repository->updateCategory($request->input('update'), $id);
 
         return redirect()->back();
     }

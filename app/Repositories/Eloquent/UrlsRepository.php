@@ -24,10 +24,10 @@ class UrlsRepository implements UrlsRepositoryInterface
             ->paginate($countPerPage);
     }
 
-    public function saveUrl(StoreRequest $request): bool
+    public function saveUrl(string $path, int $category_id): bool
     {
-        $this->model->category_id = $request->input('category_id');
-        $this->model->path = $request->input('url_path');
+        $this->model->category_id = $category_id;
+        $this->model->path = $path;
 
         try{
             $this->model->save();
@@ -38,7 +38,7 @@ class UrlsRepository implements UrlsRepositoryInterface
         return true;
     }
 
-    public function updateUrl(StoreRequest $request, int $id): bool
+    public function updateUrl(string $path, int $id): bool
     {
         // TODO: Implement updateUrl() method.
     }

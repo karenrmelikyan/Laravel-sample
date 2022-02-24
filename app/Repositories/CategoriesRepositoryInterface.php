@@ -10,7 +10,7 @@ use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 interface CategoriesRepositoryInterface
 {
     public function getCategoriesWithUser(int $countPerPage): Paginator;
-    public function saveCategory(StoreRequest $request): bool;
-    public function updateCategory(StoreRequest $request, int $id): bool;
+    public function saveCategory(string $categoryName): bool;
+    public function updateCategory(string $categoryName, int $id): bool;
     public function deleteCategory(int $id): bool;
 }
