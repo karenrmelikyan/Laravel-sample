@@ -39,9 +39,9 @@
                                     <td>{{ $category->created_at }}</td>
                                     <td><a href="{{ route('dashboard_urls.show', ['dashboard_url' => $category->id] )}}" class="bi bi-wrench"></a></td>
                                     <td>
-
-                                        <button type="submit" class="btn btn-primary bi bi-pencil-fill"></button>
-
+                                        <!--Edit Button -->
+                                        <button type="submit" class="btn btn-primary bi bi-pencil"></button>
+                                        <!-- Delete Button -->
                                         <form class="d-inline remove-item" action="{{ route('dashboard_categories.destroy', ['dashboard_category' => $category->id]) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
@@ -78,31 +78,4 @@
             </div>
         </div>
     </div>
-
-    <!-- Edit Modal -->
-    <div class="modal fade" id="edit-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h5>Push save button for update</h5>
-                </div>
-                <div class="modal-footer">
-                    <div class="modal-footer">
-                        <form class="d-inline remove-item" action="{{ route('dashboard_categories.update', ['dashboard_category' => $category->id]) }}" method="POST">
-                            @csrf
-                            @method('PATCH')
-                            <input type="text" name="edit" value="jhfhfhgfhgfhg">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary btn-confirm">Save</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 @endsection

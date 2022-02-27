@@ -40,9 +40,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                    <div text-align="right">
-                       <livewire:clock />
-                    </div>
                     <h2 class="text-center mb-4" >ARTICLE GENERATOR</h2>
                 </div>
             </div>
