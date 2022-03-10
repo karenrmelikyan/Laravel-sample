@@ -4,8 +4,9 @@ use App\Http\Controllers\auth\AuthenticationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UrlsController;
 use App\Http\Controllers\HomeController;
-use App\Http\Livewire\Counter1;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\CategoryController as CategoryApiController;
+use App\Http\Controllers\Api\UrlController as UrlApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,10 @@ Route::middleware(['auth'])->group(static function() {
    ->only(['show', 'store', 'update', 'destroy']);
 
 });
+
+Route::get('categories', [CategoryApiController::class, 'index']);
+Route::get('urls', [UrlApiController::class, 'index']);
+
 
 // Root(Home page)
 Route::get('/', [HomeController::class, 'index'])->name('root');
