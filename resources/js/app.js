@@ -2,6 +2,7 @@ require('./bootstrap');
 // import '@popperjs/core';
 import { Modal } from 'bootstrap';
 
+// Delete modal
 (function() {
     const deleteModalEl = document.getElementById('delete-modal-id');
     if (deleteModalEl) {
@@ -30,3 +31,22 @@ import { Modal } from 'bootstrap';
         });
     }
 })();
+
+// Dashboard
+document.addEventListener('DOMContentLoaded', (event) => {
+
+    const tag = document.querySelectorAll('.card-text');
+
+    if (tag.length > 0) {
+        tag.forEach(function (elem) {
+            const url = elem.dataset.url;
+            const key = elem.dataset.key;
+
+            if (url !== undefined && key !== undefined) {
+                fetch(url).then(response => response.json()).then(data => {
+                    elem.textContent = data[key];
+                });
+            }
+        });
+    }
+})

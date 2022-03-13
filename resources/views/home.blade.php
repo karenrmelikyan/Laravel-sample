@@ -25,7 +25,7 @@
     @if (Route::has('login'))
         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
             @auth
-                <a href="{{ url('/dashboard_categories') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                <a href="{{ route('dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
             @else
                 <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
@@ -41,74 +41,9 @@
                 <div class="col-md-12 mt-2 text-gray-600 dark:text-gray-400 text-sm">
                     <h2 class="text-center mb-4" >ARTICLE GENERATOR</h2>
                 </div>
-
-                <button class="fetch_button">
-                    Fetch
-                </button>
             </div>
         </div>
     </section>
 </div>
-
-<script>
-
-    const button = document.querySelector('.fetch_button');
-
-    button.addEventListener('click', async function (event) {
-         fetch('http://laravel-test.loc').then(async function(data){
-            print(await data.text())
-        })
-        console.log('click');
-    });
-
-
-    function print(text) {
-       console.log(text)
-    }
-
-
-    // async function sleep(seconds) {
-    //     return new Promise((resolve) => {
-    //         setTimeout(() => {
-    //             resolve();
-    //         }, seconds * 1000);
-    //     })
-    // }
-    //
-    // async function doLater() {
-    //     return setTimeout(function() {
-    //         return 'Hello Later';
-    //     }, 5000);
-    // }
-    // async function doSomething() {
-    //     return new Promise(function(resolve, reject) {
-    //         setTimeout(() => {
-    //             resolve("Hello World");
-    //         }, 5000);
-    //     })
-    // }
-    //
-    // async function getResponse() {
-    //     const response = await fetch('http://laravel-test.loc');
-    //     const body = await response.text();
-    //     console.log(body);
-    // }
-    //
-    // (async function () {
-    //     await sleep(3);
-    //     console.log("Hello");
-    //     // doLater().then((data) => console.log(data));
-    //     // const a = doLater();
-    //     // console.log(a);
-    // })();
-    //
-    // document.querySelector('.fetch_button').addEventListener('click', function() {
-    //     // getResponse();\
-    //     doSomething().then((data) => {
-    //         console.log(data);
-    //     });
-    // });
-
-</script>
 </body>
 </html>

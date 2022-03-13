@@ -25,7 +25,7 @@ class UrlsController extends Controller
      */
     public function show($category_id): Renderable
     {
-        $relation = $this->repository->getUrlsWithCategory($category_id, 3);
+        $relation = $this->repository->getUrlsWithCategory((int) $category_id, 3);
 
         // If there doesn't exist some URL in the table, we can't get the category name, that's why we alter $category_name to message.
         isset($relation[0]) ? $category_name = $relation[0]->category->name : $category_name = 'Add some Url for viewing category name';
@@ -46,7 +46,7 @@ class UrlsController extends Controller
      */
     public function store(StoreRequest $request): RedirectResponse
     {
-        $this->repository->saveUrl($request->input('url_path'), $request->input('category_id'));
+        $this->repository->saveUrl($request->input('url_path'), (int) $request->input('category_id'));
 
         return redirect()->back();
     }
@@ -71,7 +71,7 @@ class UrlsController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        $this->repository->deleteUrl($id);
+        $this->repository->deleteUrl((int) $id);
 
         return redirect()->back();
     }

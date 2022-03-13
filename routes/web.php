@@ -1,12 +1,11 @@
 <?php
 
 use App\Http\Controllers\auth\AuthenticationController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UrlsController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\CategoryController as CategoryApiController;
-use App\Http\Controllers\Api\UrlController as UrlApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,14 +34,11 @@ Route::middleware(['auth'])->group(static function() {
    Route::resource('/dashboard_urls', UrlsController::class)
    ->only(['show', 'store', 'update', 'destroy']);
 
+   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+   Route::get('/api', [DashboardController::class, 'api'])->name('api');
+
 });
-
-Route::get('categories', [CategoryApiController::class, 'index']);
-Route::get('urls', [UrlApiController::class, 'index']);
-
 
 // Root(Home page)
 Route::get('/', [HomeController::class, 'index'])->name('root');
-
-
-
