@@ -3,43 +3,78 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
 use App\Models\Category;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index(): JsonResponse
     {
         return response()->json(Category::get(), 200);
     }
 
-    public function getById(int $id)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return JsonResponse
+     */
+    public function store(Request $request): JsonResponse
     {
-        return response()->json(Category::find($id), 200);
-    }
-
-    public function save(Request $request)
-    {
-        $category = new Category($request->all());
-        $category->save();
+        try{
+            $category = new Category($request->all());
+            $category->save();
+        } catch (\Exception $ex) {
+            return response()->json(['error' => true, 'message' => 'Something went wrong with save category'], 404);
+        }
 
         return response()->json($category, 201);
     }
 
-    public function update(Request $request, int $id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return JsonResponse
+     */
+    public function update(Request $request, $id): JsonResponse
     {
         $category = Category::find($id);
+
+        // If not found by Id
+        if (is_null($category)) {
+            return response()->json(['error' => true, 'message' => 'Not found ID '. $id], 404);
+        }
+
         $category->update($request->all());
 
         return response()->json($category, 200);
     }
 
-    public function delete(int $id)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return JsonResponse
+     */
+    public function destroy($id): JsonResponse
     {
         $category = Category::find($id);
+
+        // If not found by Id
+        if (is_null($category)) {
+            return response()->json(['error' => true, 'message' => 'Not found ID '. $id], 404);
+        }
+
         $category->delete();
 
-        return response()->json('', 204);
+        return response()->json([], 204);
     }
 }

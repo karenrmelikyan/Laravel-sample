@@ -18,27 +18,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//// User authentication/registration
-//Route::get('/register', [AuthenticationController::class, 'showRegistrationForm'])->name('register');
-//Route::post('/register', [AuthenticationController::class, 'register'])->name('register');
-//Route::get('/login', [AuthenticationController::class, 'showLoginForm'])->name('login');
-//Route::post('/login', [AuthenticationController::class, 'login'])->name('login');
-//Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
-//
-//// Dashboards
-//Route::middleware(['auth'])->group(static function() {
-//
-//   Route::resource('/dashboard_categories', CategoryController::class)
-//   ->only(['index', 'store', 'update', 'destroy']);
-//
-//   Route::resource('/dashboard_urls', UrlsController::class)
-//   ->only(['show', 'store', 'update', 'destroy']);
-//
-//   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-//
-//   Route::get('/api', [DashboardController::class, 'api'])->name('api');
-//
-//});
-//
-//// Root(Home page)
-//Route::get('/', [HomeController::class, 'index'])->name('root');
+// User authentication/registration
+Route::get('/register', [AuthenticationController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [AuthenticationController::class, 'register'])->name('register');
+Route::get('/login', [AuthenticationController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthenticationController::class, 'login'])->name('login');
+Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
+
+// Dashboards
+Route::middleware(['auth'])->group(static function() {
+
+   Route::resource('/dashboard_categories', CategoryController::class)
+   ->only(['index', 'store', 'update', 'destroy']);
+
+   Route::resource('/dashboard_urls', UrlsController::class)
+   ->only(['show', 'store', 'update', 'destroy']);
+
+   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+   Route::get('/api', [DashboardController::class, 'api'])->name('api');
+
+});
+
+// Root(Home page)
+Route::get('/', [HomeController::class, 'index'])->name('root');

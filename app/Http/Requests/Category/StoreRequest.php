@@ -24,7 +24,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'add_category' => 'string|max:64',
+            'category_name' => 'required|string|max:64',
         ];
     }
 }

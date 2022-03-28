@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Url;
+namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class CategoryRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,7 +25,8 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'url_path' => 'required|url',
+            'name' => 'required|string|max:64',
+            'user_id' => 'required|int',
         ];
     }
 }
