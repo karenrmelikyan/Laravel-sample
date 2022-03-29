@@ -13,9 +13,9 @@ class URL extends Model
     private string $path;
     protected $table = 'urls';
     protected $fillable = [
-        'user_id',
+        'category_id',
         'path',
-        'scraped_status',
+        'is_scraped',
     ];
 
     public function category(): BelongsTo

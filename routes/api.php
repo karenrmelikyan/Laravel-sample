@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\UrlController;
 use App\Http\Controllers\Api\CategoryController;
 
 /*
@@ -20,4 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('/category', CategoryController::class)
-    ->only(['index', 'store', 'update', 'destroy']);
+    ->only(['index', 'show', 'store', 'update', 'destroy']);
+
+Route::resource('/url', UrlController::class)
+    ->only(['show', 'store', 'update', 'destroy']);

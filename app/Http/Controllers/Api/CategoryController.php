@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
@@ -17,6 +17,17 @@ class CategoryController extends Controller
     public function index(): JsonResponse
     {
         return response()->json(Category::get(), 200);
+    }
+
+    /**
+     * Show one element by ID
+     *
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function show(int $id): JsonResponse
+    {
+        return response()->json(Category::find($id), 200);
     }
 
     /**
